@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors Selection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #152c3d;
+            margin: 0;
+            padding: 0;
+            color:000;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color:#fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center
+        }
+
+        .doctor-button {
+            display: inline-block;
+            margin: 5px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #152c2d;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div style="padding-top:200px"></div>
+    <div class="container">
+        <h1>Doctors Selection</h1>
+        <br>
+        <form id="doctorForm" action="/appointments" method="POST">
+            {% for doctor in lst %}
+                <button type="submit" class="doctor-button" name="name" value="{{ doctor }}">{{ doctor }}</button>
+            {% endfor %}
+        </form>
+    </div>
+</body>
+</html>

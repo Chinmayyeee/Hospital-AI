@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Simple Chat Interface</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #111;
+    }
+    .chat-container {
+        max-width: 500px;
+        margin: 20px auto;
+        background-color: #121;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    }
+    .chat-header {
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 15px;
+        text-align: center;
+        font-size: 24px;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    .chat-messages {
+        padding: 15px;
+        overflow-y: auto;
+        max-height: 3000px;
+    }
+    .message {
+        margin-bottom: 20px;
+        display: flex;
+        align-items: flex-start;
+    }
+    .message.sender {
+        justify-content: flex-end;
+    }
+    .message-body {
+        background-color: #E8E8E8;
+        padding: 10px;
+        border-radius: 20px;
+        max-width: 70%;
+        word-wrap: break-word;
+    }
+    .message-body::before {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 8px 10px 8px 0;
+        border-color: transparent #E8E8E8 transparent transparent;
+        top: 8px;
+        left: -8px;
+    }
+    .message.sender .message-body {
+        background-color: #DCF8C6;
+    }
+    .message.sender .message-body::before {
+        border-color: transparent transparent transparent #DCF8C6;
+        left: auto;
+        right: -8px;
+        border-width: 8px 0 8px 10px;
+    }
+    .message-input-container {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        border-top: 1px solid #ccc;
+    }
+    .message-input {
+        flex: 1;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 20px;
+        outline: none;
+        font-size: 16px;
+    }
+    .send-button {
+        margin-left: 15px;
+        padding: 10px 20px;
+        border: none;
+        background-color: #4CAF50;
+        color: #fff;
+        border-radius: 20px;
+        cursor: pointer;
+        outline: none;
+        transition: background-color 0.3s;
+    }
+    .send-button:hover {
+        background-color: #45a049;
+    }
+</style>
+</head>
+<body>
+<br><br><br><br><br><br>
+<form action="/chat" method="POST">
+<div class="chat-container">
+    <div class="chat-header">Chat with our Doctor</div>
+    <div class="chat-messages">
+        <div class="message sender">
+            <div class="message-body">{{user[-2 ]}}</div>
+        </div>
+        <div class="message receiver">
+              <div class="message-body">{{response[-2]}}</div>
+        </div>
+        <div class="message sender">
+            <div class="message-body">{{user[-1]}}</div>
+        </div>
+        <div class="message receiver">
+              <div class="message-body">{{response[-1]}}</div>
+        </div>
+    </div>
+    <div class="message-input-container">
+        <input class="message-input" type="text" name='user' id='user' placeholder="Type your message...">
+        <button class="send-button" type="submit">Send</button>
+    </div>
+</div>
+<input type="text" name="id" value="{{id}}" style="display: none;"><br>
+</form>
+</body>
+<script>
+  function reloadWindow() {
+    window.location.reload();
+  }
+  setInterval(reloadWindow, 20000);
+</script>
+</html>

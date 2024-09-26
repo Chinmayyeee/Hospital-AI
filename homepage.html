@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOS-AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+        }
+        header {
+            background-color: #152c3d;
+            color: #fff;
+            padding: 5px 20px;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            background-color: #152c3d;
+            padding: 2px;
+        }
+        nav ul {
+            list-style-type: none; 
+            margin-left: 250px;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+            padding-left: 25px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+        section {
+            padding: 20px;
+        }
+        form {
+            margin-top: 10px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        textarea {
+            width: 90%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1px;
+        }
+        .option {
+            font-size: 15px; /* Increase font size */
+            padding: 5px; /* Add padding to the select box */
+            width: 98%; /* Make select box full width */
+            box-sizing: border-box; /* Include padding and border in width */
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+        .section1, .section, .section2, .section3 {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            flex: 1;
+            text-align: left;
+            margin-right: 50px;
+        }
+        .section1 { height: 152px; }
+        .section { height: 350px; }
+        .section2 { height: 522px; margin-right: 30px; }
+        .section3 { height: 400px; margin-right: 30px; }
+        .section h2 { margin-top: 0; }
+        .section form { margin-top: 20px; }
+        button{
+            color:black;
+            background-color:#e6e6e9;
+        }
+        .chatnow{
+            color:black;
+            background-color:white;
+            padding:10px;
+            text-decoration:none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <br>
+        <h1>HOS-AI</h1>
+        <nav>
+            <ul>
+                <li><a href="#query">Query</a></li>
+                <li><a href="#chat">Chat With Doctors</a></li>
+                <li><a href="#appointment">Book an Appointment</a></li>
+                <li><a href="#ambulance">Book an Ambulance</a></li>
+                <li><a href="#medicine">Need Medicine</a></li>
+                <li><a href="#location">Locate Us</a></li>
+                <li><a href="#about">About Us</a></li>
+
+            </ul>
+        </nav>
+    </header>
+    <br><br>
+    <div class="container">
+    <section id="query" class="section1">
+        <h2 style="text-align:center">Enter Your Health Related Query</h2>
+        <h6 style="text-align:center">(The search box is enhanced by google search engine and the results are from webMD.com)</h6>        
+        <div class="gcse-search"></div>
+    </section>
+    </div>
+    <script async src="https://cse.google.com/cse.js?cx=572dcbd817c274965"></script>
+    <br><br>
+    <div class="container" id="chat">
+    <form method="POST" class="section1" style="text-align:center; background-color:#152c3d ; color:white">
+        <h1>Chat With Our Doctors</h1>
+        <br>
+        <a class="chatnow" href="http://127.0.0.1:5000/chatinterface" target="_blank">Chat Now</a>
+    </form>
+    </div>
+
+    <br><br>
+    <div class="container">
+        <section id="appointment" class="section" style="background-color:#152c3d; color:white">
+            <h2>Book an Appointment</h2>
+            <p>Fill out the form below:</p>
+            <form id="appointmentForm" action="/selectdoctor" method="POST">
+                <input type="text" name="name" placeholder="Your Name" required><br>
+                <input type="text" name="mobile" id="mobile" placeholder="+91XXXXXXXXXX" pattern="^\d{10}$" required><br>
+                <input type="date" name="date" placeholder="Appointment Date" required><br>
+                <select name="hospital" id="hospital" class="option" required>
+                    <option value="" disabled selected>Select a Hospital</option>
+                    <option value="Hospital A">Hospital A</option>
+                    <option value="Hospital B">Hospital B</option>
+                    <option value="Hospital C">Hospital C</option>
+                    <option value="Hospital D">Hospital D</option>
+                    <option value="Hospital E">Hospital E</option>
+                </select>
+                <br><br>
+                <button type="submit">Next</button>
+            </form> 
+        </section>
+        <section id="ambulance" class="section">
+          <h2>Book an Ambulance</h2>
+          <p>Our ambulance facility prioritizes swift and efficient emergency medical services. Equipped with state-of-the-art vehicles and staffed by highly trained paramedics and emergency medical technicians, we ensure rapid response times and expert care during critical moments.</p>
+          <p>Trust in our ambulance facility to provide prompt, reliable, and compassionate support during emergencies because your health and well-being are our top priorities.</p>
+          <form action="/ambulance" method="POST">
+            <button type="submit">Book Now</button>
+          </form>
+        </section>
+        
+        <section id="medicine" class="section" style="background-color:#152c3d ; color:white">
+          <h2>Need Medicine</h2>
+          <p>Welcome to our hospital's online medicine facility! With our cutting-edge digital platform, you can access a comprehensive range of medical services from the comfort of your own home.</p>
+          <p>At our hospital, we are committed to providing high-quality, accessible healthcare services, and our online medicine facility is designed to make managing your health easier and more convenient than ever before.</p>
+          <form action="/shop" method="POST">
+            <br>
+            <a class="chatnow" href="http://127.0.0.1:5000/shop" target="_blank">Explore Now</a>
+        </form>
+        </section>
+      </div>
+      <br>
+      <br>
+      <div class="container">
+      <section id="location" class="section2" style="background-color:#152c3d ; color:white">
+        <h2>Locate Us</h2>
+      <form>
+        <select name="state" id="districtSelect" class="option" required>
+            <option value="" disabled selected>Select a district</option>
+                <optgroup label="Andaman and Nicobar Islands">
+                    <option value="North and Middle Andaman">North and Middle Andaman</option>
+                    <option value="South Andaman">South Andaman</option>
+                    <option value="Nicobar">Nicobar</option>
+                </optgroup>
+                <optgroup label="Andhra Pradesh">
+                    <option value="Anantapur">Anantapur</option>
+                    <option value="Chittoor">Chittoor</option>
+                    <option value="East Godavari">East Godavari</option>
+                    <option value="Guntur">Guntur</option>
+                    <option value="Krishna">Krishna</option>
+                </optgroup>
+                <optgroup label="Arunachal Pradesh">
+                    <option value="Changlang">Changlang</option>
+                    <option value="East Kameng">East Kameng</option>
+                    <option value="East Siang">East Siang</option>
+                    <option value="Kamle">Kamle</option>
+                    <option value="Kra Daadi">Kra Daadi</option>
+                </optgroup>
+                <optgroup label="Assam">
+                    <option value="Baksa">Baksa</option>
+                    <option value="Barpeta">Barpeta</option>
+                    <option value="Biswanath">Biswanath</option>
+                    <option value="Bongaigaon">Bongaigaon</option>
+                    <option value="Cachar">Cachar</option>
+                </optgroup>
+                <optgroup label="Bihar">
+                    <option value="Araria">Araria</option>
+                    <option value="Arwal">Arwal</option>
+                    <option value="Aurangabad">Aurangabad</option>
+                    <option value="Banka">Banka</option>
+                    <option value="Purnia">Purnia</option>
+                </optgroup>
+                <optgroup label="Chandigarh">
+                    <option value="Chandigarh">Chandigarh</option>
+                </optgroup>
+                <optgroup label="Chhattisgarh">
+                    <option value="Balod">Balod</option>
+                    <option value="Baloda Bazar">Baloda Bazar</option>
+                    <option value="Balrampur">Balrampur</option>
+                    <option value="Bastar">Bastar</option>
+                    <option value="Bemetara">Bemetara</option>
+                </optgroup>
+                <optgroup label="Dadra and Nagar Haveli">
+                    <option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+                </optgroup>
+                <optgroup label="Daman and Diu">
+                    <option value="Daman">Daman</option>
+                    <option value="Diu">Diu</option>
+                </optgroup>
+                <optgroup label="Delhi">
+                    <option value="Central Delhi">Central Delhi</option>
+                    <option value="East Delhi">East Delhi</option>
+                    <option value="New Delhi">New Delhi</option>
+                    <option value="North Delhi">North Delhi</option>
+                    <option value="North East Delhi">North East Delhi</option>
+                </optgroup>
+                <optgroup label="Goa">
+                    <option value="North Goa">North Goa</option>
+                    <option value="South Goa">South Goa</option>
+                </optgroup>
+                <optgroup label="Gujarat">
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Amreli">Amreli</option>
+                    <option value="Anand">Anand</option>
+                    <option value="Aravalli">Aravalli</option>
+                    <option value="Banaskantha">Banaskantha</option>
+                </optgroup>
+                <optgroup label="Haryana">
+                    <option value="Ambala">Ambala</option>
+                    <option value="Bhiwani">Bhiwani</option>
+                    <option value="Charkhi Dadri">Charkhi Dadri</option>
+                    <option value="Faridabad">Faridabad</option>
+                    <option value="Fatehabad">Fatehabad</option>
+                </optgroup>
+                <optgroup label="Himachal Pradesh">
+                    <option value="Bilaspur">Bilaspur</option>
+                    <option value="Chamba">Chamba</option>
+                    <option value="Hamirpur">Hamirpur</option>
+                    <option value="Kangra">Kangra</option>
+                    <option value="Kinnaur">Kinnaur</option>
+                </optgroup>
+                <optgroup label="Jammu and Kashmir">
+                    <option value="Anantnag">Anantnag</option>
+                    <option value="Bandipora">Bandipora</option>
+                    <option value="Baramulla">Baramulla</option>
+                    <option value="Budgam">Budgam</option>
+                    <option value="Doda">Doda</option>
+                </optgroup>
+                <optgroup label="Jharkhand">
+                    <option value="Bokaro">Bokaro</option>
+                    <option value="Chatra">Chatra</option>
+                    <option value="Deoghar">Deoghar</option>
+                    <option value="Dhanbad">Dhanbad</option>
+                    <option value="Dumka">Dumka</option>
+                </optgroup>
+                <optgroup label="Karnataka">
+                    <option value="Bagalkot">Bagalkot</option>
+                    <option value="Ballari">Ballari</option>
+                    <option value="Belagavi">Belagavi</option>
+                    <option value="Bengaluru Rural">Bengaluru Rural</option>
+                    <option value="Bengaluru Urban">Bengaluru Urban</option>
+                </optgroup>
+                <optgroup label="Kerala">
+                    <option value="Alappuzha">Alappuzha</option>
+                    <option value="Ernakulam">Ernakulam</option>
+                    <option value="Idukki">Idukki</option>
+                    <option value="Kannur">Kannur</option>
+                    <option value="Kasaragod">Kasaragod</option>
+                </optgroup>
+                <optgroup label="Ladakh">
+                    <option value="Kargil">Kargil</option>
+                    <option value="Leh">Leh</option>
+                </optgroup>
+                <optgroup label="Lakshadweep">
+                    <option value="Agatti Island">Agatti Island</option>
+                    <option value="Amini">Amini</option>
+                    <option value="Andrott">Andrott</option>
+                    <option value="Kavaratti">Kavaratti</option>
+                    <option value="Kalpeni">Kalpeni</option>
+                </optgroup>
+                <optgroup label="Madhya Pradesh">
+                    <option value="Agar Malwa">Agar Malwa</option>
+                    <option value="Alirajpur">Alirajpur</option>
+                    <option value="Anuppur">Anuppur</option>
+                    <option value="Ashoknagar">Ashoknagar</option>
+                    <option value="Balaghat">Balaghat</option>
+                </optgroup>
+                <optgroup label="Maharashtra">
+                    <option value="Ahmednagar">Ahmednagar</option>
+                    <option value="Akola">Akola</option>
+                    <option value="Amravati">Amravati</option>
+                    <option value="Aurangabad">Aurangabad</option>
+                    <option value="Beed">Beed</option>
+                </optgroup>
+                <optgroup label="Manipur">
+                    <option value="Bishnupur">Bishnupur</option>
+                    <option value="Chandel">Chandel</option>
+                    <option value="Churachandpur">Churachandpur</option>
+                    <option value="Imphal East">Imphal East</option>
+                    <option value="Imphal West">Imphal West</option>
+                </optgroup>
+                <optgroup label="Meghalaya">
+                    <option value="East Garo Hills">East Garo Hills</option>
+                    <option value="East Jaintia Hills">East Jaintia Hills</option>
+                    <option value="East Khasi Hills">East Khasi Hills</option>
+                    <option value="North Garo Hills">North Garo Hills</option>
+                    <option value="Ribhoi">Ribhoi</option>
+                </optgroup>
+                <optgroup label="Mizoram">
+                    <option value="Aizawl">Aizawl</option>
+                    <option value="Champhai">Champhai</option>
+                    <option value="Kolasib">Kolasib</option>
+                    <option value="Lawngtlai">Lawngtlai</option>
+                    <option value="Lunglei">Lunglei</option>
+                </optgroup>
+                <optgroup label="Nagaland">
+                    <option value="Dimapur">Dimapur</option>
+                    <option value="Kiphire">Kiphire</option>
+                    <option value="Kohima">Kohima</option>
+                    <option value="Longleng">Longleng</option>
+                    <option value="Mokokchung">Mokokchung</option>
+                </optgroup>
+                <optgroup label="Odisha">
+                    <option value="Angul">Angul</option>
+                    <option value="Balangir">Balangir</option>
+                    <option value="Balasore">Balasore</option>
+                    <option value="Bargarh">Bargarh</option>
+                    <option value="Bhadrak">Bhadrak</option>
+                </optgroup>
+                <optgroup label="Puducherry">
+                    <option value="Karaikal">Karaikal</option>
+                    <option value="Mahe">Mahe</option>
+                    <option value="Puducherry">Puducherry</option>
+                    <option value="Yanam">Yanam</option>
+                </optgroup>
+                <optgroup label="Punjab">
+                    <option value="Amritsar">Amritsar</option>
+                    <option value="Barnala">Barnala</option>
+                    <option value="Bathinda">Bathinda</option>
+                    <option value="Faridkot">Faridkot</option>
+                    <option value="Fatehgarh Sahib">Fatehgarh Sahib</option>
+                </optgroup>
+                <optgroup label="Rajasthan">
+                    <option value="Ajmer">Ajmer</option>
+                    <option value="Alwar">Alwar</option>
+                    <option value="Banswara">Banswara</option>
+                    <option value="Baran">Baran</option>
+                    <option value="Barmer">Barmer</option>
+                </optgroup>
+                <optgroup label="Sikkim">
+                    <option value="East Sikkim">East Sikkim</option>
+                    <option value="North Sikkim">North Sikkim</option>
+                    <option value="South Sikkim">South Sikkim</option>
+                    <option value="West Sikkim">West Sikkim</option>
+                </optgroup>
+                <optgroup label="Tamil Nadu">
+                    <option value="Ariyalur">Ariyalur</option>
+                    <option value="Chengalpattu">Chengalpattu</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Coimbatore">Coimbatore</option>
+                    <option value="Cuddalore">Cuddalore</option>
+                </optgroup>
+                <optgroup label="Telangana">
+                    <option value="Adilabad">Adilabad</option>
+                    <option value="Bhadradri Kothagudem">Bhadradri Kothagudem</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Jagtial">Jagtial</option>
+                    <option value="Jangaon">Jangaon</option>
+                </optgroup>
+                <optgroup label="Tripura">
+                    <option value="Dhalai">Dhalai</option>
+                    <option value="Gomati">Gomati</option>
+                    <option value="Khowai">Khowai</option>
+                    <option value="North Tripura">North Tripura</option>
+                    <option value="Sepahijala">Sepahijala</option>
+                </optgroup>
+                <optgroup label="Uttar Pradesh">
+                    <option value="Agra">Agra</option>
+                    <option value="Aligarh">Aligarh</option>
+                    <option value="Ambedkar Nagar">Ambedkar Nagar</option>
+                    <option value="Amethi">Amethi</option>
+                    <option value="Amroha">Amroha</option>
+                </optgroup>
+                <optgroup label="Uttarakhand">
+                    <option value="Almora">Almora</option>
+                    <option value="Bageshwar">Bageshwar</option>
+                    <option value="Chamoli">Chamoli</option>
+                    <option value="Champawat">Champawat</option>
+                    <option value="Dehradun">Dehradun</option>
+                </optgroup>
+                <optgroup label="West Bengal">
+                    <option value="Alipurduar">Alipurduar</option>
+                    <option value="Bankura">Bankura</option>
+                    <option value="Birbhum">Birbhum</option>
+                    <option value="Cooch Behar">Cooch Behar</option>
+                    <option value="Dakshin Dinajpur">Dakshin Dinajpur</option>
+                </optgroup>
+        </select>
+            
+        <br><br>
+      </form>
+    <div>
+    <br><p>We're excited to announce that we're expanding our reach to connect with more hospitals across different states very soon.</p>
+    <br><p>We understand that your health and well-being are paramount, and we're dedicated to providing the support and assistance you need. </p>
+    <br><p>We kindly ask for your patience during this process as we work tirelessly to ensure we're here to help you access the care you deserve. Stay tuned for updates, and thank you for entrusting us with your health.</p>
+    </div>
+    </section>
+    <section id="map" class="section2">
+    <h4 style="text-align:center">Map</h4>
+    <div id="links"></div>
+    </section>
+    </div>
+    <br><br>
+    <div class="container">
+        <section id="about" class="section3" style="background-color:#152c3d ; color:white">
+            <h2>About HOS-AI</h2>
+            <p>Welcome to HOS-AI, your trusted partner in healthcare. Our mission is to make healthcare accessible and convenient for everyone. We leverage advanced AI technology to connect you with top healthcare services, ensuring you receive the best care possible.</p>
+            <br><p>Founded by a team of dedicated professionals, HOS-AI was created to bridge the gap between patients and healthcare providers. Our comprehensive platform offers a range of services including health queries, doctor consultations, appointment bookings, ambulance services, and online medicine orders.</p>
+            <br><p>At HOS-AI, we believe in compassionate care, innovation, and excellence. Our team works tirelessly to provide you with accurate information, reliable services, and a seamless user experience. We are committed to improving your health and well-being, one click at a time.</p>
+            <br><p>Thank you for choosing HOS-AI. We are here to support you on your healthcare journey. If you have any questions or need assistance, please do not hesitate to contact us.</p>
+        </section>
+    </div>
+
+    <br><br><footer>
+        <p>&copy; 2024 HOS-AI. All rights reserved. &copy; "Shubham, Aman & Chinmayee".</p>
+    </footer>
+</body>
+<script>
+    var selectElement = document.getElementById('districtSelect');
+    var linksDiv = document.getElementById('links');
+    selectElement.addEventListener('change', function() {
+        var selecteddistrict = selectElement.value;
+        linksDiv.innerHTML = '<div class="mapouter"><div class="gmap_canvas"><iframe width="701" height="562" id="gmap_canvas" src="https://maps.google.com/maps?q=hospital+in+' + selecteddistrict + '&t=&z=7&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.analarmclock.com"></a><br><a href="https://www.onclock.net"></a><br><style>.mapouter{position: relative;text-align: right;height: 462px;width: 601px;}</style><a href="https://www.ongooglemaps.com">location map</a><style>.gmap_canvas{overflow: hidden;background: none !important;height: 462px;width: 601px;}</style></div></div>';
+    });
+</script>
+</html>

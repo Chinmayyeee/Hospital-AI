@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #152c3d;
+            color:#fff;
+        }
+        
+        header {
+            background-color: #152c3d;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            margin: 0;
+        }
+        
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+        
+        .medicine {
+            border-radius:20px;
+            border: 1px solid #ccc;
+            margin: 10px;
+            width: 300px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .medicine:hover {
+            transform: translateY(-5px);
+        }
+        
+        .medicine-info {
+            padding: 15px;
+        }
+        
+        .medicine h2 {
+            margin-top: 0;
+            font-size: 1.2rem;
+            color: #333;
+        }
+        
+        .medicine p {
+            color: #000;
+            margin-bottom: 10px;
+        }
+        
+        .add-to-cart {
+            text-align: right;
+        }
+        
+        .add-to-cart button {
+            background-color: #152c3d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .add-to-cart button:hover {
+            background-color: #152c3d;
+        }
+        
+        form {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        form h4 {
+            margin: 10px 0;
+        }
+        
+        form p {
+            margin-bottom: 20px;
+        }
+        
+        form button[type="submit"] {
+            background-color: #152c3d;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        form button[type="submit"]:hover {
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Medicine Shop</h1>
+    </header>
+    <form action="/order" method="POST">
+        {% for item in items %}
+        <h4>{{item}}</h4>
+        {% endfor %}
+        <p>Price: Rs. {{total}}</p>
+        <button style="background-color:#fff; color:#000;" type="submit">Place Order</button>
+    </form>
+    <form action="/addtocart" method="POST">
+        <div class="container">
+            {% for med in med %}
+            <div class="medicine">
+                <div class="medicine-info">
+                    <h2>{{med[1]}}</h2>
+                    <p>Description: {{med[2]}}</p>
+                    <p>Price: Rs. {{med[3]}}</p>
+                    <div class="add-to-cart">
+                        <button type="submit" value={{med[0]}} name="item">Add</button>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </form>
+    <script>
+        function addToCart(name, price) {
+            console.log("Added to cart: ", name, "Price: $", price);
+        }
+    </script>
+</body>
+</html>
